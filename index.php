@@ -18,6 +18,15 @@ header("Pragma: no-cache");
     <link rel="stylesheet" href="libraries/fontawesome-free-5.12.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 
+    <script>
+        grecaptcha.ready(function () {
+            grecaptcha.execute('INSERT KEY HERE', { action: 'contact' }).then(function (token) {
+                var recaptchaResponse = document.getElementById('recaptchaResponse');
+                recaptchaResponse.value = token;
+            });
+        });
+    </script>
+
 </head>
 
 <body class="d-flex flex-column h-100" id="section-conclave-report-form" data-spy="scroll" data-target="#scroll" data-offset="0">
@@ -269,6 +278,8 @@ header("Pragma: no-cache");
                             <label class="required">Description</label>
                             <textarea name="contact_description" id="contact_description" class="form-control" rows="4" required placeholder="Please describe the issue. The more detail you provide, the easier it is for us to help you."></textarea>
                         </div>
+                        <input type="hidden" name="recaptcha_response" id="recaptchaResponse">
+                        <p class="mb-2"><small class="text-muted">This site is protected by reCAPTCHA and the Google <a href="https://policies.google.com/privacy">Privacy Policy</a> and <a href="https://policies.google.com/terms">Terms of Service</a> apply.</small></p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
